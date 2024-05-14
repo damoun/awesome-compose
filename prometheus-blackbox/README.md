@@ -21,7 +21,9 @@ CONTAINER ID   IMAGE                                  COMMAND                  C
 4b4039aea377   quay.io/prometheus/blackbox-exporter   "/bin/blackbox_expor…"   2 seconds ago   Up 2 seconds   0.0.0.0:9115->9115/tcp   blackbox_exporter
 ```
 
-Navigate to [http://localhost:9090](http://localhost:9090) in your web browser to access Prometheus or [http://localhost:9090](http://localhost:9115) to access Blackbox Exporter.
+Navigate to [http://localhost:9090](http://localhost:9090) in your web browser to access Prometheus or [http://localhost:9115](http://localhost:9115) to access Blackbox Exporter.
+
+## Cleanup
 
 Stop and remove the containers. Use -v to remove the volumes if looking to erase all data.
 
