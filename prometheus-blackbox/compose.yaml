@@ -1,6 +1,6 @@
 services:
   prometheus:
-    image: quay.io/prometheus/prometheus
+    image: quay.io/prometheus/prometheus@sha256:f20d3127bf2876f4a1df76246fca576b41ddf1125ed1c546fbd8b16ea55117e6
     container_name: prometheus
     depends_on:
       - blackbox_exporter
@@ -14,7 +14,7 @@ services:
       - ./prometheus:/etc/prometheus:ro
       - prom_data:/prometheus:rw
   blackbox_exporter:
-    image: quay.io/prometheus/blackbox-exporter
+    image: quay.io/prometheus/blackbox-exporter@sha256:b04a9fef4fa086a02fc7fcd8dcdbc4b7b35cc30cdee860fdc6a19dd8b208d63e
     container_name: blackbox_exporter
     command:
       - '--config.file=/etc/blackbox_exporter/blackbox.yaml'
