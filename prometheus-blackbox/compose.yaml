@@ -1,6 +1,6 @@
 services:
   prometheus:
-    image: quay.io/prometheus/prometheus@sha256:378f4e03703557d1c6419e6caccf922f96e6d88a530f7431d66a4c4f4b1000fe
+    image: quay.io/prometheus/prometheus@sha256:3b9b2a15d376334da8c286d995777d3b9315aa666d2311170ada6059a517b74f
     container_name: prometheus
     depends_on:
       - blackbox_exporter
