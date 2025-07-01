@@ -1,6 +1,7 @@
+---
 global:
   scrape_interval: 30s
-  scrape_timeout: 10s   
+  scrape_timeout: 10s
   evaluation_interval: 30s
 
 scrape_configs:
@@ -10,10 +11,10 @@ scrape_configs:
       module: [tcp_connect]
     static_configs:
       - targets:
-        - 1.1.1.1:53
-        - 8.8.8.8:53
-        - 8.8.4.4:53
-        - 127.0.0.1:65535
+          - 1.1.1.1:53
+          - 8.8.8.8:53
+          - 8.8.4.4:53
+          - 127.0.0.1:65535
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -28,7 +29,7 @@ scrape_configs:
       module: [icmp]
     static_configs:
       - targets:
-        - 1.1.1.1
+          - 1.1.1.1
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -43,25 +44,8 @@ scrape_configs:
       module: [dns_udp]
     static_configs:
       - targets:
-        - 8.8.8.8
-        - 127.0.0.1
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: blackbox_exporter:9115
-  
-  - job_name: http_2xx
-    metrics_path: /probe
-    params:
-      module: [http_2xx]
-    static_configs:
-      - targets:
-        - https://httpco.de/200
-        - https://httpco.de/500
-        - https://httpco.de/400
+          - 8.8.8.8
+          - 127.0.0.1
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -70,6 +54,24 @@ scrape_configs:
       - target_label: __address__
         replacement: blackbox_exporter:9115
 
-  - job_name: blackbox_exporter  # collect blackbox exporter's operational metrics.
+  - job_name: http_2xx
+    metrics_path: /probe
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+          - https://httpco.de/200
+          - https://httpco.de/500
+          - https://httpco.de/400
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox_exporter:9115
+
+  # collect blackbox exporter's operational metrics.
+  - job_name: blackbox_exporter
     static_configs:
       - targets: [blackbox_exporter:9115]

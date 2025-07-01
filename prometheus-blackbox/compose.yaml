@@ -1,3 +1,4 @@
+---
 services:
   prometheus:
     image: quay.io/prometheus/prometheus:v3.4.2
@@ -5,7 +6,7 @@ services:
     depends_on:
       - blackbox_exporter
     command:
-      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - --config.file=/etc/prometheus/prometheus.yaml
     ports:
       - 9090:9090
     restart: "no"
@@ -17,7 +18,7 @@ services:
     image: quay.io/prometheus/blackbox-exporter:v0.27.0
     container_name: blackbox_exporter
     command:
-      - '--config.file=/etc/blackbox_exporter/blackbox.yaml'
+      - --config.file=/etc/blackbox_exporter/blackbox.yaml
     ports:
       - 9115:9115
     restart: "no"
