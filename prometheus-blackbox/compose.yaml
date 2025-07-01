@@ -8,7 +8,7 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     ports:
       - 9090:9090
-    restart: unless-stopped
+    restart: "no"
     read_only: true
     volumes:
       - ./prometheus:/etc/prometheus:ro
@@ -20,7 +20,7 @@ services:
       - '--config.file=/etc/blackbox_exporter/blackbox.yaml'
     ports:
       - 9115:9115
-    restart: unless-stopped
+    restart: "no"
     read_only: true
     volumes:
       - ./blackbox_exporter:/etc/blackbox_exporter:ro
